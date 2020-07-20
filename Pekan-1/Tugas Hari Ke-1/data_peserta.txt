@@ -1,0 +1,6 @@
+Data Peserta Sanbercode Bootcamp ReactJS
+1. Nama: Dimas Wijayanto
+2. Email: martenzitic@gmail.com
+3. Sistem Operasi yang digunakan: Windows
+4. Akun Gitlab: https://github.com/maswijay
+5. Akun Telegram: https://t.me/dimaswijay
