@@ -1,0 +1,8 @@
+header {
+    height: 50px;
+    background-color: #ffffff;
+    margin: 0 auto;
+}
+body {
+    background-image: url(../img/pattern.jpg);
+}
