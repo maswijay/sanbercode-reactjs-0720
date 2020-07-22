@@ -35,17 +35,17 @@ console.log('Kata Kelima: ' + kataKelima);
 
 // soal 4
 
-var nilai= 79;
+var nilai= 66;
 
 if (nilai >= 80) {
     console.log("A")
-} else if (nilai >= 70) {
+} else if (nilai >= 70 && nilai < 80) {
     console.log("B")
-} else if (nilai >= 60) {
+} else if (nilai >= 60 && nilai < 70) {
     console.log("C")
-} else if (nilai >= 50) {
+} else if (nilai >= 50 && nilai < 60) {
     console.log("D")
-} else {
+} else { 
     console.log("E")
 }
 
