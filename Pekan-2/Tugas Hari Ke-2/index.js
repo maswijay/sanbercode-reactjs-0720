@@ -16,7 +16,7 @@ function bacaBuku(time, index) {
         if (index + 1 < books.length) {
             bacaBuku(sisaWaktu, index + 1)
         } else {
-            console.log('waktu sudah habis dan semua buku sudah dibaca.')
+            console.log('waktu sudah habis.')
         }
     });
 }
