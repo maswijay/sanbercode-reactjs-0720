@@ -3,7 +3,6 @@ import React from 'react';
 // import './App.css';
 import Tugas11 from './tugas11/Tugas11'
 import Clock from './tugas12/Tugas12';
-import Lists from './tugas13/Tugas13'
 import ListBuah from './tugas13/ListBuah';
 
 
