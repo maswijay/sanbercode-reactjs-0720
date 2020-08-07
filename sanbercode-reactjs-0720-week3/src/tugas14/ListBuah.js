@@ -7,9 +7,9 @@ const ListBuah = () => {
     const [input, setInput] = useState({
         name: '',
         price: '',
-        weight: ''
+        weight: 0
         })
-    const [selectedId, setSelectedId] = useState('0')
+    const [selectedId, setSelectedId] = useState(0)
     const [statusForm, setStatusForm] = useState('create')
 
     useEffect( () => {
@@ -25,47 +25,66 @@ const ListBuah = () => {
     )
 
     const handleChange = (event) =>{
-        setInput(event.target.value)
+        let typeOfInput = event.target.name
+        
+        switch (typeOfInput){
+            case 'name':{
+                setInput({...input, name: event.target.value});
+                break
+            }
+            case 'price':{
+                setInput({...input, price: event.target.value});
+                break
+            }
+            case 'weight':{
+                setInput({...input, weight: event.target.value});
+                break
+            }
+        default:{
+            break;
+        }
+        }
     }
 
     const handleEdit = (event) => {
         let idBuah = parseInt(event.target.value)
         let buah = dataHargaBuah.find(x => x.id === idBuah)
-        setInput(buah.name)
+        setInput({name: buah.name, price: buah.price, weight: buah.weight})
         setSelectedId(idBuah)
         setStatusForm('edit')
     }
 
     const handleDelete = (event) => {
         let idBuah = parseInt(event.target.value)
-        let newDataHargaBuah = dataHargaBuah.filter(el => el.id !== idBuah)
+        let newDataHargaBuah = dataHargaBuah.filter(el => el.id != idBuah)
 
-        axios.delete(`http://backendexample.sanbercloud.com/api/fruits${idBuah}`)
+        axios.delete(`http://backendexample.sanbercloud.com/api/fruits/${idBuah}`)
         .then(res => {
             console.log(res)
         })
 
-        setDataBuah = ([...newDataHargaBuah])
+        setDataBuah([...newDataHargaBuah])
     }
 
     const handleSubmit = (event) => {
         event.preventDefault()
 
-        let buah = input
+        let name = input.name
+        let price = input.price.toString()
 
-        if (buah.replace(/\s/g,'') !== ''){
+        if (name.replace(/\s/g,'') !== '' && price.replace(/\s/g,'') !== ''){
             if (statusForm === 'create'){
-                axios.post(`http://backendexample.sanbercloud.com/api/fruits/`, {buah})
+                axios.post(`http://backendexample.sanbercloud.com/api/fruits`, {name: input.name, price: input.price, weight: input.weight})
                 .then(res => {
-                    setDataBuah([...dataHargaBuah, {id: res.id, name: res.name, price: res.price, weight: res.weight}])
+                    setDataBuah([...dataHargaBuah, {id: res.data.id, name: input.name, price: input.price, weight: input.weight}])
                 })
             }else if(statusForm === 'edit'){
-                axios.put(`http://backendexample.sanbercloud.com/api/fruits/${selectedId}`, {buah})
-                .then(res => {
-                    let dataBuah = dataHargaBuah.find(el=> el.id ===selectedId)
-                    dataBuah.name = res.data.name
-                    dataBuah.price = res.data.price
-                    dataBuah.weight = res.data.weight
+                axios.put(`http://backendexample.sanbercloud.com/api/fruits/${selectedId}`, {name: input.name, price: input.price, weight: input.weight})
+                .then(() => {
+                    let dataBuah = dataHargaBuah.find(el=> el.id === selectedId)
+                    dataBuah.name = input.name
+                    dataBuah.price = input.price
+                    dataBuah.weight = input.weight
                     
                     setDataBuah([...dataHargaBuah])
                 })
@@ -73,7 +92,7 @@ const ListBuah = () => {
 
             setStatusForm('create')
             setSelectedId(0)
-            setInput('')
+            setInput({name: '', price: '', weight: 0})
         }
     }
 
@@ -82,7 +101,7 @@ const ListBuah = () => {
             <div style={{width: '40%', margin: '0 auto', marginTop: '20px'}}>
                 <h1 style= {{textAlign:'center'}}>Tabel Harga Buah</h1>
                 <table style={{width: '100%', border: '1px solid black'}}>
-                    <tbody>
+                    <thead>
                         <tr style={{backgroundColor: '#AAAAAA'}}>
                             <th>No</th>
                             <th>Nama</th>
@@ -90,21 +109,21 @@ const ListBuah = () => {
                             <th>Berat</th>
                             <th>Aksi</th>                    
                         </tr>
-                    </tbody>
+                    </thead>
                     
                     <tbody style= {{backgroundColor: '#FF7F50'}}>
                         {
-                            dataHargaBuah != null && dataHargaBuah.map((id, index) => {
+                            dataHargaBuah != null && dataHargaBuah.map((item, index) => {
                             return(
                                 <tr key={index}>
                                     <td style= {{textAlign:'center'}}>{index+1}</td>
-                                    <td>{id.name}</td>
-                                    <td>{id.price}</td>
-                                    <td>{id.weight/1000}kg</td>
+                                    <td>{item.name}</td>
+                                    <td>{item.price}</td>
+                                    <td>{item.weight/1000} Kg</td>
                                     <td style={{textAlign: 'center'}}>
-                                        <button onClick={handleEdit} value={id}>Edit</button>
+                                        <button onClick={handleEdit} value={item.id}>Edit</button>
                                         &nbsp;
-                                        <button onClick={handleDelete} value={id}>Delete</button>
+                                        <button onClick={handleDelete} value={item.id}>Delete</button>
                                     </td>
                                 </tr>
                             )
@@ -114,19 +133,27 @@ const ListBuah = () => {
                 {/* Form Input */}
                 <h1 style= {{textAlign:'center'}}>Form Tambah dan Edit</h1>
                 
-                <form onSubmit={handleSubmit}>
-                    <label>Nama Buah: </label>
-                    <input type="text" name= 'nama'  onChange={handleChange} />  
-                </form>
-                <form onSubmit={handleSubmit}>
-                    <label>Harga Buah: </label>
-                    <input type="text"  name= 'harga'  onChange={handleChange} />
-                </form>                    
-                <form onSubmit={handleSubmit}>
-                    <label>Berat Buah dalam gram: </label>
-                    <input type="text"  name= 'berat'  onChange={handleChange} />                  
-                </form>  
-                <button>submit</button>
+                <div style={{width: '100%', margin: '0 auto', marginTop: '10px', display: 'block'}}>
+                    <div style={{border: '1px solid grey', padding: '20px'}}>
+                        <form onSubmit={handleSubmit}>
+                            <label style={{float: 'left'}}>Nama buah:</label>
+                            <input style={{float: 'right'}} type='text' name='name' value={input.name} onChange={handleChange} />
+                        <br/>
+                        <br/>
+                            <label style={{float: 'left'}}>Harga buah:</label>
+                            <input style={{float: 'right'}} type='text' name='price' value={input.price} onChange={handleChange} />
+                        <br/>
+                        <br/>
+                            <label style={{float: 'left'}}>Berat buah (dalam gram):</label>
+                            <input style={{float: 'right'}} type='text' name='weight' value={input.weight} onChange={handleChange} />
+                        <br/>
+                        <br/>
+                        <div style={{width: '100%', paddingBottom: '20px'}}>
+                            <button style={{float: 'right'}}>submit</button>
+                        </div>
+                        </form>
+                    </div>
+                </div>
             </div>
             </>
         )
