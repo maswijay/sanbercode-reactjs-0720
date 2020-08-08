@@ -1,0 +1,30 @@
+nav {
+    height: 60px;
+    background-color: #ffffff;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    width: 100%;
+    z-index: 3;
+    position: fixed;
+    top: 0;
+}
+
+nav ul {
+    margin: 5px auto;
+    padding: 0;
+    overflow: hidden;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+nav ul li {
+    display: block;
+    padding: 5px 10px;
+}
+
+nav ul li a {
+    
+    text-decoration: none;
+}

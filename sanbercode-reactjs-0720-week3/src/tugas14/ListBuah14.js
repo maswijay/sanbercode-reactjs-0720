@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react'
 import axios from 'axios'
 
-const ListBuah = () => {
+const ListBuah14 = () => {
 
     const [dataHargaBuah, setDataBuah] = useState(null)
     const [input, setInput] = useState({
@@ -160,4 +160,4 @@ const ListBuah = () => {
 }
 
 
-export default ListBuah
+export default ListBuah14

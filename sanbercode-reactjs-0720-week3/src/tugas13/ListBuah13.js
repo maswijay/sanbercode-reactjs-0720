@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 
-class ListBuah extends Component{
+class ListBuah13 extends Component{
 
     constructor(props){
         super(props)
@@ -152,4 +152,4 @@ class ListBuah extends Component{
 
 }
 
-export default ListBuah
+export default ListBuah13
