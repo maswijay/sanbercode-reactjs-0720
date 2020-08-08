@@ -5,6 +5,7 @@ import Tugas11 from './tugas11/Tugas11'
 import Clock from './tugas12/Tugas12';
 // import ListBuah from './tugas13/ListBuah';
 import ListBuah from './tugas14/ListBuah';
+import Buah from './tugas15/Buah';
 
 
 function App() {
@@ -18,7 +19,10 @@ function App() {
 
       {/* tugas13 */}
       {/* tugas14 */}
-      <ListBuah />
+      {/* <ListBuah /> */}
+
+      {/* tugas15 */}
+      <Buah />
 
       
 
