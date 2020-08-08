@@ -24,7 +24,14 @@ nav ul li {
     padding: 5px 10px;
 }
 
-nav ul li a {
-    
+nav ul li:hover {
+    width: 80px;
+    background-color: #5C5C8C;
+    font-size: large;
+    font-weight: bold;
+}
+
+nav ul li a {    
     text-decoration: none;
+    text-decoration-color: #ffffff;
 }
