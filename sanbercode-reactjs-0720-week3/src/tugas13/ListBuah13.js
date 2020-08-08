@@ -126,25 +126,27 @@ class ListBuah13 extends Component{
                 {/* Form Input */}
                 <h1 style= {{textAlign:'center'}}>Form Tambah dan Edit</h1>
                 
-                <form onSubmit={this.handleSubmit}>
-                    <label>Masukan nama: </label>
-                    <input type="text" name= 'nama' value={this.state.input.nama} onChange={this.handleChange} placeholder='Nama Buah' />
-                    &nbsp;
-                    <button>submit</button>   
-                </form>
-                <form onSubmit={this.handleSubmit}>
-                    <label>Masukan harga: </label>
-                    <input type="text"  name= 'harga' value={this.state.input.harga} onChange={this.handleChange} placeholder='Harga Buah' />
-                    &nbsp;
-                    <button>submit</button>
-                </form>                    
-                <form onSubmit={this.handleSubmit}>
-                    <label>Masukan berat: </label>
-                    <input type="text"  name= 'berat' value={this.state.input.berat} onChange={this.handleChange} placeholder='Berat Buah dalam gram' />
-                    &nbsp;
-                    <button>submit</button>
-                </form>  
-                
+                <div style={{width: '100%', margin: '0 auto', marginTop: '10px', display: 'block'}}>
+                    <div style={{border: '1px solid grey', padding: '20px'}}>
+                        <form onSubmit={this.handleSubmit}>
+                            <label style={{float: 'left'}}>Masukan nama: </label>
+                            <input style={{float: 'right'}} type="text" name= 'nama' value={this.state.input.nama} onChange={this.handleChange} placeholder='Nama Buah' />
+                        <br/>
+                        <br/>
+                            <label style={{float: 'left'}}>Masukan harga: </label>
+                            <input style={{float: 'right'}} type="text"  name= 'harga' value={this.state.input.harga} onChange={this.handleChange} placeholder='Harga Buah' />
+                        <br/>
+                        <br/>
+                            <label style={{float: 'left'}}>Masukan berat: </label>
+                            <input style={{float: 'right'}} type="text"  name= 'berat' value={this.state.input.berat} onChange={this.handleChange} placeholder='Berat Buah dalam gram' />
+                        <br/>
+                        <br/>
+                        <div style={{width: '100%', paddingBottom: '20px'}}>
+                            <button style={{float: 'right'}}>submit</button>
+                        </div>
+                        </form>
+                    </div>
+                </div>                
             </div>
             </>
         )
