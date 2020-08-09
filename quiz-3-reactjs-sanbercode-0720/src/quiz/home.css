@@ -1,0 +1,19 @@
+body {
+    background-image: url(./img/pattern.jpg);
+    margin: 0;
+    padding: 0;
+}
+
+.content {
+    background-color: #fff;
+    width: 60%;
+    margin: 60px auto;
+    padding: 20px;
+}
+
+h1 {
+    text-align: center;
+}
+footer {
+    text-align: center;
+}

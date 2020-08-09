@@ -4,12 +4,22 @@ import React from 'react';
 import Index from './quiz/index'
 import About from './quiz/about'
 import Home from './quiz/home'
+import { BrowserRouter as Router, BrowserRouter } from 'react-router-dom';
+import MovieListEditor from './quiz/MovieListEditor';
 
 function App() {
   return (
     <div className="App">
-      {/* <Index /> */}
-      <About />
+      
+
+
+      <BrowserRouter>
+        <Index />
+      </BrowserRouter>
+      
+     
+      <MovieListEditor/>
+      {/* <About /> */}
       {/* <Home /> */}
     </div>
   );
