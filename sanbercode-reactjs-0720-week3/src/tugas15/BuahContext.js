@@ -3,15 +3,14 @@ import React, { useState, createContext } from 'react'
 export const BuahContext = createContext();
 
 export const BuahProvider = props => {
-    const [dataHargaBuah, setDataBuah] = useState(null)
-    const [input, setInput] = useState([
-        {name: '', price: '', weight: 0}
-        ])
-               
-        ;
+    const [dataHargaBuah, setDataBuah] = useState({
+        lists: null,
+        selectedId: 0,
+        statusForm: 'create'
+        });
 
     return (
-        <BuahContext.Provider value={[dataHargaBuah, setDataBuah, input, setInput]}>
+        <BuahContext.Provider value={[dataHargaBuah, setDataBuah]}>
             {props.children}
         </BuahContext.Provider>
     );

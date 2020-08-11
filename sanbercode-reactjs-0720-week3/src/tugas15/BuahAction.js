@@ -3,7 +3,7 @@ import {BuahContext} from './BuahContext'
 import axios from 'axios'
 
 const BuahAction = () =>{
-    const [dataHargaBuah, setDataBuah, input, setInput] = useContext(BuahContext)
+    const [dataHargaBuah, setDataBuah] = useContext(BuahContext)
     const [selectedId, setSelectedId] = useState(0)
     const [statusForm, setStatusForm] = useState('create')
 
@@ -22,22 +22,20 @@ const BuahAction = () =>{
 
     const handleEdit = (event) => {
         let idBuah = parseInt(event.target.value)
-        let buah = dataHargaBuah.find(x => x.id === idBuah)
-        setInput({name: buah.name, price: buah.price, weight: buah.weight})
-        setSelectedId(idBuah)
-        setStatusForm('edit')
+
+        setDataBuah({...dataHargaBuah, selectedId: idBuah, statusForm: 'edit'})
     }
 
     const handleDelete = (event) => {
         let idBuah = parseInt(event.target.value)
-        let newDataHargaBuah = dataHargaBuah.filter(el => el.id != idBuah)
+        let newDataHargaBuah = dataHargaBuah.lists.filter(el => el.id != idBuah)
 
         axios.delete(`http://backendexample.sanbercloud.com/api/fruits/${idBuah}`)
         .then(res => {
             console.log(res)
         })
 
-        setDataBuah([...newDataHargaBuah])
+        setDataBuah({...dataHargaBuah, lists: [...newDataHargaBuah]})
     }
 
     

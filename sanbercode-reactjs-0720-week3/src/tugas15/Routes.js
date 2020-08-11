@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import {Switch, Link, Route} from 'react-router-dom'
 import './Routes.css'
 
@@ -7,10 +7,13 @@ import Clock from '../tugas12/Tugas12';
 import ListBuah13 from '../tugas13/ListBuah13';
 import ListBuah14 from '../tugas14/ListBuah14';
 import Buah from './Buah';
+// import { ThemeProvider, ThemeContext } from './ThemeContext';
 
 const Routes = () => {
+    // const [theme] = useContext(ThemeContext)
     return (
         <>
+        {/* <ThemeProvider> */}
             <nav>
                 <ul>
                     <li>
@@ -47,6 +50,9 @@ const Routes = () => {
                     <Tugas11 />
                 </Route>
             </Switch>
+            
+        {/* </ThemeProvider> */}
+            
         </>
     )
 }
